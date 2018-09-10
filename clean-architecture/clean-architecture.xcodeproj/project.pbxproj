@@ -24,6 +24,7 @@
 		D98C91C52146567F00B5F2FB /* LaunchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C91C42146567F00B5F2FB /* LaunchRouter.swift */; };
 		D98C91C62146567F00B5F2FB /* LaunchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C91C42146567F00B5F2FB /* LaunchRouter.swift */; };
 		D98C91C8214658AC00B5F2FB /* ShopLocatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C91C7214658AC00B5F2FB /* ShopLocatorViewController.swift */; };
+		D98C91C9214659A400B5F2FB /* ShopLocatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C91C7214658AC00B5F2FB /* ShopLocatorViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -314,6 +315,7 @@
 				D97632AD2142C9AA00742C63 /* DownloadConfigurationWorker.swift in Sources */,
 				D97632B3214310B700742C63 /* LaunchPresenterTests.swift in Sources */,
 				D97632A92142C5DC00742C63 /* SetupUseCase.swift in Sources */,
+				D98C91C9214659A400B5F2FB /* ShopLocatorViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
