@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                         router: router)
         let controller = LaunchViewController(nibName: nil, bundle: nil, output: presenter)
         presenter.view = controller
+        router.viewController = controller
         let nav = UINavigationController(rootViewController: controller)
         nav.setNavigationBarHidden(true, animated: false)
         window = UIWindow(frame: UIScreen.main.bounds)

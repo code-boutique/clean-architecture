@@ -23,6 +23,7 @@
 		D97632B4214310E100742C63 /* LaunchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97632AE21430F8000742C63 /* LaunchPresenter.swift */; };
 		D98C91C52146567F00B5F2FB /* LaunchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C91C42146567F00B5F2FB /* LaunchRouter.swift */; };
 		D98C91C62146567F00B5F2FB /* LaunchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C91C42146567F00B5F2FB /* LaunchRouter.swift */; };
+		D98C91C8214658AC00B5F2FB /* ShopLocatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C91C7214658AC00B5F2FB /* ShopLocatorViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		D97632AE21430F8000742C63 /* LaunchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchPresenter.swift; sourceTree = "<group>"; };
 		D97632B2214310B700742C63 /* LaunchPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchPresenterTests.swift; sourceTree = "<group>"; };
 		D98C91C42146567F00B5F2FB /* LaunchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchRouter.swift; sourceTree = "<group>"; };
+		D98C91C7214658AC00B5F2FB /* ShopLocatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopLocatorViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 		D976329E2142C19100742C63 /* ShopLocator */ = {
 			isa = PBXGroup;
 			children = (
+				D98C91C7214658AC00B5F2FB /* ShopLocatorViewController.swift */,
 			);
 			path = ShopLocator;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				D97632A42142C44400742C63 /* DownloadConfigurationWorker.swift in Sources */,
 				D97632AB2142C93E00742C63 /* SaveConfigurationWorker.swift in Sources */,
 				D976327D2142BD4E00742C63 /* AppDelegate.swift in Sources */,
+				D98C91C8214658AC00B5F2FB /* ShopLocatorViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
