@@ -21,6 +21,8 @@
 		D97632AF21430F8000742C63 /* LaunchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97632AE21430F8000742C63 /* LaunchPresenter.swift */; };
 		D97632B3214310B700742C63 /* LaunchPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97632B2214310B700742C63 /* LaunchPresenterTests.swift */; };
 		D97632B4214310E100742C63 /* LaunchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97632AE21430F8000742C63 /* LaunchPresenter.swift */; };
+		D98C91C52146567F00B5F2FB /* LaunchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C91C42146567F00B5F2FB /* LaunchRouter.swift */; };
+		D98C91C62146567F00B5F2FB /* LaunchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C91C42146567F00B5F2FB /* LaunchRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,7 @@
 		D97632AA2142C93E00742C63 /* SaveConfigurationWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveConfigurationWorker.swift; sourceTree = "<group>"; };
 		D97632AE21430F8000742C63 /* LaunchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchPresenter.swift; sourceTree = "<group>"; };
 		D97632B2214310B700742C63 /* LaunchPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchPresenterTests.swift; sourceTree = "<group>"; };
+		D98C91C42146567F00B5F2FB /* LaunchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +126,7 @@
 			children = (
 				D976327E2142BD4E00742C63 /* LaunchViewController.swift */,
 				D97632AE21430F8000742C63 /* LaunchPresenter.swift */,
+				D98C91C42146567F00B5F2FB /* LaunchRouter.swift */,
 			);
 			path = Launch;
 			sourceTree = "<group>";
@@ -285,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D98C91C52146567F00B5F2FB /* LaunchRouter.swift in Sources */,
 				D97632AF21430F8000742C63 /* LaunchPresenter.swift in Sources */,
 				D976327F2142BD4E00742C63 /* LaunchViewController.swift in Sources */,
 				D97632A22142C27E00742C63 /* SetupUseCase.swift in Sources */,
@@ -298,6 +303,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D98C91C62146567F00B5F2FB /* LaunchRouter.swift in Sources */,
 				D97632B4214310E100742C63 /* LaunchPresenter.swift in Sources */,
 				D97632AC2142C9A800742C63 /* SaveConfigurationWorker.swift in Sources */,
 				D97632A82142C56800742C63 /* SetupConfigurationTests.swift in Sources */,

@@ -4,11 +4,14 @@ class LaunchPresenterTests: XCTestCase {
     
     var sut: LaunchPresenter!
     fileprivate var useCase: SetupUseCaseStub!
+    fileprivate var router: LaunchRouterSpy!
     
     override func setUp() {
         super.setUp()
         useCase = SetupUseCaseStub()
-        sut = LaunchPresenter(setup: useCase)
+        router = LaunchRouterSpy()
+        sut = LaunchPresenter(setup: useCase,
+                              router: router)
     }
     
     func testLoadingStartSpinningWhenSceneIsReady() {
@@ -27,6 +30,23 @@ class LaunchPresenterTests: XCTestCase {
         XCTAssertTrue(view.stopLoadingCalled == 1)
     }
     
+    func testGotoMainScreenWhenConfigurationIsDownloaded() {
+        let view = ViewSpy()
+        sut.view = view
+        sut.sceneReady()
+        XCTAssertTrue(view.startLoadingCalled == 1)
+        XCTAssertTrue(useCase.getAppConfigurationCalled)
+        XCTAssertTrue(view.stopLoadingCalled == 1)
+        XCTAssertTrue(router.gotoMainScreenCalled == 1)
+    }
+    
+}
+
+private class LaunchRouterSpy: LaunchRouterInput {
+    var gotoMainScreenCalled = 0
+    func gotoMainAppScreen() {
+        gotoMainScreenCalled += 1
+    }
 }
 
 private class SetupUseCaseStub: SetupUseCaseProtocol {

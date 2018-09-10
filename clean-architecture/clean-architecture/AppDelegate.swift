@@ -12,7 +12,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func launchApp() {
         let setupUseCase = SetupUseCaseFake()
-        let presenter = LaunchPresenter(setup: setupUseCase)
+        let router = LaunchRouter()
+        let presenter = LaunchPresenter(setup: setupUseCase,
+                                        router: router)
         let controller = LaunchViewController(nibName: nil, bundle: nil, output: presenter)
         presenter.view = controller
         let nav = UINavigationController(rootViewController: controller)

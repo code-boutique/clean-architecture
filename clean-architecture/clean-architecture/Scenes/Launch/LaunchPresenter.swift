@@ -14,15 +14,19 @@ class LaunchPresenter: LaunchViewOutput {
     
     weak var view: LaunchViewInput?
     let setupUseCase: SetupUseCaseProtocol
+    let router: LaunchRouterInput
     
-    init(setup: SetupUseCaseProtocol) {
+    init(setup: SetupUseCaseProtocol,
+         router: LaunchRouterInput) {
         self.setupUseCase = setup
+        self.router = router
     }
     
     func sceneReady() {
         view?.startLoading()
-        setupUseCase.getAppConfiguration { (configuration) in
-            self.view?.stopLoading()
+        setupUseCase.getAppConfiguration { [weak self] (configuration) in
+            self?.view?.stopLoading()
+            self?.router.gotoMainAppScreen()
         }
     }
     
