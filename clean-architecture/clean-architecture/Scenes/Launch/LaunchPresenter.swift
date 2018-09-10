@@ -13,9 +13,17 @@ protocol LaunchViewInput: class {
 class LaunchPresenter: LaunchViewOutput {
     
     weak var view: LaunchViewInput?
+    let setupUseCase: SetupUseCaseProtocol
+    
+    init(setup: SetupUseCaseProtocol) {
+        self.setupUseCase = setup
+    }
     
     func sceneReady() {
         view?.startLoading()
+        setupUseCase.getAppConfiguration { (configuration) in
+            self.view?.stopLoading()
+        }
     }
     
 }

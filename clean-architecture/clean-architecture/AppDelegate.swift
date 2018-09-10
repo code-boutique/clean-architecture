@@ -11,7 +11,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func launchApp() {
-        let presenter = LaunchPresenter()
+        let setupUseCase = SetupUseCaseFake()
+        let presenter = LaunchPresenter(setup: setupUseCase)
         let controller = LaunchViewController(nibName: nil, bundle: nil, output: presenter)
         presenter.view = controller
         let nav = UINavigationController(rootViewController: controller)
@@ -20,6 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = nav
         window?.makeKeyAndVisible()
     }
+}
 
+private class SetupUseCaseFake: SetupUseCaseProtocol {
+    func getAppConfiguration(completion: @escaping (AppConfigurationError?) -> ()) {
+        completion(nil)
+    }
 }
 
