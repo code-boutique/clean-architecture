@@ -13,6 +13,15 @@
 		D93AEB172147E00B007C04BB /* LaunchErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AEB152147E00B007C04BB /* LaunchErrors.swift */; };
 		D93AEB1A2147E061007C04BB /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AEB192147E061007C04BB /* AppConfiguration.swift */; };
 		D93AEB1B2147E061007C04BB /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AEB192147E061007C04BB /* AppConfiguration.swift */; };
+		C332A66D2147BBAD00B7D891 /* ShopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C332A66B2147BBAD00B7D891 /* ShopTableViewCell.swift */; };
+		C332A6792147DE1300B7D891 /* ShopDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C332A6782147DE1300B7D891 /* ShopDetailViewController.swift */; };
+		C332A67B2147DE7200B7D891 /* ShopContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C332A67A2147DE7200B7D891 /* ShopContentView.swift */; };
+		C34D7B722147E18B007E3CE1 /* ShopsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34D7B712147E18B007E3CE1 /* ShopsRouter.swift */; };
+		C34D7B742147E342007E3CE1 /* ShopsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34D7B732147E342007E3CE1 /* ShopsPresenter.swift */; };
+		C3C1D92221468558008D168B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C1D92121468558008D168B /* ViewController.swift */; };
+		C3C1D92421468C88008D168B /* ShopsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C1D92321468C88008D168B /* ShopsContentView.swift */; };
+		C3C1D92621468CC7008D168B /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C1D92521468CC7008D168B /* ErrorView.swift */; };
+		C3C1D92821468CD4008D168B /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C1D92721468CD4008D168B /* LoadingView.swift */; };
 		D976327D2142BD4E00742C63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976327C2142BD4E00742C63 /* AppDelegate.swift */; };
 		D976327F2142BD4E00742C63 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976327E2142BD4E00742C63 /* LaunchViewController.swift */; };
 		D97632842142BD5000742C63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D97632832142BD5000742C63 /* Assets.xcassets */; };
@@ -29,8 +38,8 @@
 		D97632B4214310E100742C63 /* LaunchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97632AE21430F8000742C63 /* LaunchPresenter.swift */; };
 		D98C91C52146567F00B5F2FB /* LaunchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C91C42146567F00B5F2FB /* LaunchRouter.swift */; };
 		D98C91C62146567F00B5F2FB /* LaunchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C91C42146567F00B5F2FB /* LaunchRouter.swift */; };
-		D98C91C8214658AC00B5F2FB /* ShopLocatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C91C7214658AC00B5F2FB /* ShopLocatorViewController.swift */; };
-		D98C91C9214659A400B5F2FB /* ShopLocatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C91C7214658AC00B5F2FB /* ShopLocatorViewController.swift */; };
+		D98C91C8214658AC00B5F2FB /* ShopsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C91C7214658AC00B5F2FB /* ShopsViewController.swift */; };
+		D98C91C9214659A400B5F2FB /* ShopsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C91C7214658AC00B5F2FB /* ShopsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +56,15 @@
 		D93AEB122147DB03007C04BB /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		D93AEB152147E00B007C04BB /* LaunchErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchErrors.swift; sourceTree = "<group>"; };
 		D93AEB192147E061007C04BB /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		C332A66B2147BBAD00B7D891 /* ShopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopTableViewCell.swift; sourceTree = "<group>"; };
+		C332A6782147DE1300B7D891 /* ShopDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopDetailViewController.swift; sourceTree = "<group>"; };
+		C332A67A2147DE7200B7D891 /* ShopContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopContentView.swift; sourceTree = "<group>"; };
+		C34D7B712147E18B007E3CE1 /* ShopsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsRouter.swift; sourceTree = "<group>"; };
+		C34D7B732147E342007E3CE1 /* ShopsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsPresenter.swift; sourceTree = "<group>"; };
+		C3C1D92121468558008D168B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C3C1D92321468C88008D168B /* ShopsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsContentView.swift; sourceTree = "<group>"; };
+		C3C1D92521468CC7008D168B /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		C3C1D92721468CD4008D168B /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		D97632792142BD4E00742C63 /* clean-architecture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "clean-architecture.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D976327C2142BD4E00742C63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D976327E2142BD4E00742C63 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
@@ -62,7 +80,7 @@
 		D97632AE21430F8000742C63 /* LaunchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchPresenter.swift; sourceTree = "<group>"; };
 		D97632B2214310B700742C63 /* LaunchPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchPresenterTests.swift; sourceTree = "<group>"; };
 		D98C91C42146567F00B5F2FB /* LaunchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchRouter.swift; sourceTree = "<group>"; };
-		D98C91C7214658AC00B5F2FB /* ShopLocatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopLocatorViewController.swift; sourceTree = "<group>"; };
+		D98C91C7214658AC00B5F2FB /* ShopsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +117,24 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		C332A66A2147A67300B7D891 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C3C1D92721468CD4008D168B /* LoadingView.swift */,
+				C3C1D92521468CC7008D168B /* ErrorView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C3C1D92021468450008D168B /* ShopDetail */ = {
+			isa = PBXGroup;
+			children = (
+				C332A6782147DE1300B7D891 /* ShopDetailViewController.swift */,
+				C332A67A2147DE7200B7D891 /* ShopContentView.swift */,
+			);
+			path = ShopDetail;
+			sourceTree = "<group>";
+		};
 		D97632702142BD4E00742C63 = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				D976329F2142C1DB00742C63 /* Core */,
+				C332A66A2147A67300B7D891 /* Views */,
 				D976329C2142C18100742C63 /* Scenes */,
 				D976327C2142BD4E00742C63 /* AppDelegate.swift */,
 				D97632832142BD5000742C63 /* Assets.xcassets */,
@@ -143,8 +180,10 @@
 		D976329C2142C18100742C63 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				D976329E2142C19100742C63 /* ShopLocator */,
+				C3C1D92021468450008D168B /* ShopDetail */,
+				D976329E2142C19100742C63 /* ShopsLocator */,
 				D976329D2142C18A00742C63 /* Launch */,
+				C3C1D92121468558008D168B /* ViewController.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -159,12 +198,16 @@
 			path = Launch;
 			sourceTree = "<group>";
 		};
-		D976329E2142C19100742C63 /* ShopLocator */ = {
+		D976329E2142C19100742C63 /* ShopsLocator */ = {
 			isa = PBXGroup;
 			children = (
-				D98C91C7214658AC00B5F2FB /* ShopLocatorViewController.swift */,
+				D98C91C7214658AC00B5F2FB /* ShopsViewController.swift */,
+				C34D7B732147E342007E3CE1 /* ShopsPresenter.swift */,
+				C3C1D92321468C88008D168B /* ShopsContentView.swift */,
+				C332A66B2147BBAD00B7D891 /* ShopTableViewCell.swift */,
+				C34D7B712147E18B007E3CE1 /* ShopsRouter.swift */,
 			);
-			path = ShopLocator;
+			path = ShopsLocator;
 			sourceTree = "<group>";
 		};
 		D976329F2142C1DB00742C63 /* Core */ = {
@@ -325,13 +368,22 @@
 				D98C91C52146567F00B5F2FB /* LaunchRouter.swift in Sources */,
 				D97632AF21430F8000742C63 /* LaunchPresenter.swift in Sources */,
 				D93AEB162147E00B007C04BB /* LaunchErrors.swift in Sources */,
+				C332A66D2147BBAD00B7D891 /* ShopTableViewCell.swift in Sources */,
 				D976327F2142BD4E00742C63 /* LaunchViewController.swift in Sources */,
 				D93AEB1A2147E061007C04BB /* AppConfiguration.swift in Sources */,
+				C3C1D92621468CC7008D168B /* ErrorView.swift in Sources */,
+				C3C1D92221468558008D168B /* ViewController.swift in Sources */,
 				D97632A22142C27E00742C63 /* SetupUseCase.swift in Sources */,
 				D97632A42142C44400742C63 /* DownloadConfigurationWorker.swift in Sources */,
+				C34D7B742147E342007E3CE1 /* ShopsPresenter.swift in Sources */,
+				C3C1D92821468CD4008D168B /* LoadingView.swift in Sources */,
 				D97632AB2142C93E00742C63 /* SaveConfigurationWorker.swift in Sources */,
+				C34D7B722147E18B007E3CE1 /* ShopsRouter.swift in Sources */,
 				D976327D2142BD4E00742C63 /* AppDelegate.swift in Sources */,
-				D98C91C8214658AC00B5F2FB /* ShopLocatorViewController.swift in Sources */,
+				C332A6792147DE1300B7D891 /* ShopDetailViewController.swift in Sources */,
+				C3C1D92421468C88008D168B /* ShopsContentView.swift in Sources */,
+				D98C91C8214658AC00B5F2FB /* ShopsViewController.swift in Sources */,
+				C332A67B2147DE7200B7D891 /* ShopContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,7 +401,7 @@
 				D97632AD2142C9AA00742C63 /* DownloadConfigurationWorker.swift in Sources */,
 				D97632B3214310B700742C63 /* LaunchPresenterTests.swift in Sources */,
 				D97632A92142C5DC00742C63 /* SetupUseCase.swift in Sources */,
-				D98C91C9214659A400B5F2FB /* ShopLocatorViewController.swift in Sources */,
+				D98C91C9214659A400B5F2FB /* ShopsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

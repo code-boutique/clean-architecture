@@ -10,7 +10,10 @@ class LaunchRouter: LaunchRouterInput {
     weak var viewController: UIViewController?
     
     func gotoMainAppScreen() {
-        let controller = ShopLocatorViewController(nibName: nil, bundle: nil)
-        viewController?.navigationController?.pushViewController(controller, animated: true)
+        let router = ShopsRouter()
+        let presenter = ShopsPresenter(router: router)
+        let controller = ShopsViewController(presenter: presenter)
+        router.viewController = controller
+        viewController!.navigationController?.viewControllers = [controller]
     }
 }
