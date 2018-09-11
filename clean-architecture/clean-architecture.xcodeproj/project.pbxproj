@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D93AEB132147DB03007C04BB /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AEB122147DB03007C04BB /* Result.swift */; };
+		D93AEB142147DB03007C04BB /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AEB122147DB03007C04BB /* Result.swift */; };
+		D93AEB162147E00B007C04BB /* LaunchErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AEB152147E00B007C04BB /* LaunchErrors.swift */; };
+		D93AEB172147E00B007C04BB /* LaunchErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AEB152147E00B007C04BB /* LaunchErrors.swift */; };
+		D93AEB1A2147E061007C04BB /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AEB192147E061007C04BB /* AppConfiguration.swift */; };
+		D93AEB1B2147E061007C04BB /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AEB192147E061007C04BB /* AppConfiguration.swift */; };
 		D976327D2142BD4E00742C63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976327C2142BD4E00742C63 /* AppDelegate.swift */; };
 		D976327F2142BD4E00742C63 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976327E2142BD4E00742C63 /* LaunchViewController.swift */; };
 		D97632842142BD5000742C63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D97632832142BD5000742C63 /* Assets.xcassets */; };
@@ -38,6 +44,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D93AEB122147DB03007C04BB /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		D93AEB152147E00B007C04BB /* LaunchErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchErrors.swift; sourceTree = "<group>"; };
+		D93AEB192147E061007C04BB /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		D97632792142BD4E00742C63 /* clean-architecture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "clean-architecture.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D976327C2142BD4E00742C63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D976327E2142BD4E00742C63 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +83,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D93AEB112147DAED007C04BB /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				D93AEB122147DB03007C04BB /* Result.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		D93AEB182147E047007C04BB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D93AEB192147E061007C04BB /* AppConfiguration.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		D97632702142BD4E00742C63 = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +170,8 @@
 		D976329F2142C1DB00742C63 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				D93AEB182147E047007C04BB /* Models */,
+				D93AEB112147DAED007C04BB /* Common */,
 				D97632A02142C22000742C63 /* Launch */,
 			);
 			path = Core;
@@ -156,6 +183,7 @@
 				D97632A12142C27E00742C63 /* SetupUseCase.swift */,
 				D97632A32142C44400742C63 /* DownloadConfigurationWorker.swift */,
 				D97632AA2142C93E00742C63 /* SaveConfigurationWorker.swift */,
+				D93AEB152147E00B007C04BB /* LaunchErrors.swift */,
 			);
 			path = Launch;
 			sourceTree = "<group>";
@@ -293,9 +321,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D93AEB132147DB03007C04BB /* Result.swift in Sources */,
 				D98C91C52146567F00B5F2FB /* LaunchRouter.swift in Sources */,
 				D97632AF21430F8000742C63 /* LaunchPresenter.swift in Sources */,
+				D93AEB162147E00B007C04BB /* LaunchErrors.swift in Sources */,
 				D976327F2142BD4E00742C63 /* LaunchViewController.swift in Sources */,
+				D93AEB1A2147E061007C04BB /* AppConfiguration.swift in Sources */,
 				D97632A22142C27E00742C63 /* SetupUseCase.swift in Sources */,
 				D97632A42142C44400742C63 /* DownloadConfigurationWorker.swift in Sources */,
 				D97632AB2142C93E00742C63 /* SaveConfigurationWorker.swift in Sources */,
@@ -308,9 +339,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D93AEB142147DB03007C04BB /* Result.swift in Sources */,
 				D98C91C62146567F00B5F2FB /* LaunchRouter.swift in Sources */,
 				D97632B4214310E100742C63 /* LaunchPresenter.swift in Sources */,
+				D93AEB172147E00B007C04BB /* LaunchErrors.swift in Sources */,
 				D97632AC2142C9A800742C63 /* SaveConfigurationWorker.swift in Sources */,
+				D93AEB1B2147E061007C04BB /* AppConfiguration.swift in Sources */,
 				D97632A82142C56800742C63 /* SetupConfigurationTests.swift in Sources */,
 				D97632AD2142C9AA00742C63 /* DownloadConfigurationWorker.swift in Sources */,
 				D97632B3214310B700742C63 /* LaunchPresenterTests.swift in Sources */,

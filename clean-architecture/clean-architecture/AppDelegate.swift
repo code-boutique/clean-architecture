@@ -27,8 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 private class SetupUseCaseFake: SetupUseCaseProtocol {
-    func getAppConfiguration(completion: @escaping (AppConfigurationError?) -> ()) {
-        completion(nil)
+    func getAppConfiguration(completion: (Result<Void, AppConfigurationError>) -> ()) {
+        completion(Result<Void, AppConfigurationError>.success(()))
     }
 }
 

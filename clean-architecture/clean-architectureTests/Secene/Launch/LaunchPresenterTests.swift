@@ -50,10 +50,12 @@ private class LaunchRouterSpy: LaunchRouterInput {
 }
 
 private class SetupUseCaseStub: SetupUseCaseProtocol {
+    
     var getAppConfigurationCalled = false
-    func getAppConfiguration(completion: @escaping (AppConfigurationError?) -> ()) {
+    
+    func getAppConfiguration(completion: (Result<Void, AppConfigurationError>) -> ()) {
         getAppConfigurationCalled = true
-        completion(nil)
+        completion(Result<Void, AppConfigurationError>.success(()))
     }
 }
 

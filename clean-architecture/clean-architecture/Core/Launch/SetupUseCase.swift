@@ -1,20 +1,12 @@
 import Foundation
 
-
-enum AppConfigurationError: Error {
-    case downloadError
-    case saveError
-}
-
-struct AppConfiguration {
-}
-
 protocol SetupUseCaseProtocol {
-    func getAppConfiguration(completion: @escaping (_ error: AppConfigurationError?) -> ())
+    typealias GetAppConfigurationCallback = (_ completion: Result<Void, AppConfigurationError>) -> ()
+    func getAppConfiguration(completion: GetAppConfigurationCallback)
 }
 
 class SetupUseCase: SetupUseCaseProtocol {
-    
+
     private let downloadWorker: DownloadConfigurationWorker
     private let saveWorker: SaveConfigurationWorker
     
@@ -24,26 +16,23 @@ class SetupUseCase: SetupUseCaseProtocol {
         self.saveWorker = saveWorker
     }
     
-    func getAppConfiguration(completion: @escaping (_ error: AppConfigurationError?) -> ()) {
-        downloadWorker.downloadConfiguration { (configuration, error) in
-            if let error = error {
-                completion(error)
-            } else if let configuration = configuration {
+    func getAppConfiguration(completion: (Result<Void, AppConfigurationError>) -> ()) {
+        downloadWorker.downloadConfiguration { (result) in
+            switch result {
+            case .success(let configuration):
                 do {
                     try saveWorker.saveConfiguration(configuration: configuration)
-                } catch let error {
-                    completion(error as? AppConfigurationError)
+                    completion(Result<Void, AppConfigurationError>.success(()))
+                } catch (let error) {
+                    completion(Result<Void, AppConfigurationError>.failure(error as! AppConfigurationError))
                 }
+                break
+            case .failure(let error):
+                completion(Result<Void, AppConfigurationError>.failure(error))
+                break
             }
         }
     }
 }
 
-protocol DownloadConfigurationWorker {
-    typealias DownloadErrorCallback = (_ configuration: AppConfiguration?, _ error: AppConfigurationError?) -> ()
-    func downloadConfiguration(completion: DownloadErrorCallback)
-}
 
-protocol SaveConfigurationWorker {
-    func saveConfiguration(configuration: AppConfiguration) throws
-}

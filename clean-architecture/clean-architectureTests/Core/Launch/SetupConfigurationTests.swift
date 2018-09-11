@@ -13,8 +13,13 @@ class SetupConfigurationTests: XCTestCase {
         let saveWorker = SaveConfigurationOk()
         sut = SetupUseCase(downloadWorker: downloadWorker,
                            saveWorker: saveWorker)
-        sut.getAppConfiguration { (error) in
-            XCTAssertNil(error)
+        sut.getAppConfiguration { (result) in
+            switch result {
+            case .failure(_ ):
+                XCTFail()
+            case .success(let configutarion):
+                XCTAssertNotNil(configutarion)
+            }
         }
     }
     
@@ -24,8 +29,13 @@ class SetupConfigurationTests: XCTestCase {
         sut = SetupUseCase(downloadWorker: downloadWorker,
                            saveWorker: saveWorker)
         
-        sut.getAppConfiguration { (error) in
-            XCTAssertTrue(error == AppConfigurationError.downloadError)
+        sut.getAppConfiguration { (result) in
+            switch result {
+            case .failure(let error):
+                XCTAssertTrue(error == AppConfigurationError.downloadError)
+            case .success:
+                XCTFail()
+            }
         }
     }
     
@@ -35,22 +45,27 @@ class SetupConfigurationTests: XCTestCase {
         sut = SetupUseCase(downloadWorker: downloadWorker,
                            saveWorker: saveWorker)
         
-        sut.getAppConfiguration { (error) in
-            XCTAssertTrue(error == AppConfigurationError.saveError)
+        sut.getAppConfiguration { (result) in
+            switch result {
+            case .failure(let error):
+                XCTAssertTrue(error == AppConfigurationError.saveError)
+            case .success:
+                XCTFail()
+            }
         }
     }
 }
 
 private class DownloadConfigurationOk: DownloadConfigurationWorker {
-    func downloadConfiguration(completion: (AppConfiguration?, AppConfigurationError?) -> ()) {
+    func downloadConfiguration(completion: (Result<AppConfiguration, AppConfigurationError>) -> ()) {
         let configuration = AppConfiguration()
-        completion(configuration, nil)
+        completion(Result<AppConfiguration, AppConfigurationError>.success(configuration))
     }
 }
 
 private class DownloadConfigurationFail: DownloadConfigurationWorker {
-    func downloadConfiguration(completion: (AppConfiguration?, AppConfigurationError?) -> ()) {
-        completion(nil, AppConfigurationError.downloadError)
+    func downloadConfiguration(completion: (Result<AppConfiguration, AppConfigurationError>) -> ()) {
+        completion(Result<AppConfiguration, AppConfigurationError>.failure(.downloadError))
     }
 }
 
