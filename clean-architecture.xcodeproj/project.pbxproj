@@ -7,12 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D93AEB132147DB03007C04BB /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AEB122147DB03007C04BB /* Result.swift */; };
-		D93AEB142147DB03007C04BB /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AEB122147DB03007C04BB /* Result.swift */; };
-		D93AEB162147E00B007C04BB /* LaunchErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AEB152147E00B007C04BB /* LaunchErrors.swift */; };
-		D93AEB172147E00B007C04BB /* LaunchErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AEB152147E00B007C04BB /* LaunchErrors.swift */; };
-		D93AEB1A2147E061007C04BB /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AEB192147E061007C04BB /* AppConfiguration.swift */; };
-		D93AEB1B2147E061007C04BB /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AEB192147E061007C04BB /* AppConfiguration.swift */; };
 		C332A66D2147BBAD00B7D891 /* ShopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C332A66B2147BBAD00B7D891 /* ShopTableViewCell.swift */; };
 		C332A6792147DE1300B7D891 /* ShopDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C332A6782147DE1300B7D891 /* ShopDetailViewController.swift */; };
 		C332A67B2147DE7200B7D891 /* ShopContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C332A67A2147DE7200B7D891 /* ShopContentView.swift */; };
@@ -22,6 +16,14 @@
 		C3C1D92421468C88008D168B /* ShopsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C1D92321468C88008D168B /* ShopsContentView.swift */; };
 		C3C1D92621468CC7008D168B /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C1D92521468CC7008D168B /* ErrorView.swift */; };
 		C3C1D92821468CD4008D168B /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C1D92721468CD4008D168B /* LoadingView.swift */; };
+		C3EEEFB92149149000FBAB3E /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C329EBFE2149147A0093162D /* PromiseKit.framework */; };
+		C3EEEFBB2149149000FBAB3E /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3EEEFBA2149149000FBAB3E /* Alamofire.framework */; };
+		D93AEB132147DB03007C04BB /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AEB122147DB03007C04BB /* Result.swift */; };
+		D93AEB142147DB03007C04BB /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AEB122147DB03007C04BB /* Result.swift */; };
+		D93AEB162147E00B007C04BB /* LaunchErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AEB152147E00B007C04BB /* LaunchErrors.swift */; };
+		D93AEB172147E00B007C04BB /* LaunchErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AEB152147E00B007C04BB /* LaunchErrors.swift */; };
+		D93AEB1A2147E061007C04BB /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AEB192147E061007C04BB /* AppConfiguration.swift */; };
+		D93AEB1B2147E061007C04BB /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AEB192147E061007C04BB /* AppConfiguration.swift */; };
 		D976327D2142BD4E00742C63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976327C2142BD4E00742C63 /* AppDelegate.swift */; };
 		D976327F2142BD4E00742C63 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976327E2142BD4E00742C63 /* LaunchViewController.swift */; };
 		D97632842142BD5000742C63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D97632832142BD5000742C63 /* Assets.xcassets */; };
@@ -52,10 +54,21 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		C329EBFD214914130093162D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		D93AEB122147DB03007C04BB /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
-		D93AEB152147E00B007C04BB /* LaunchErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchErrors.swift; sourceTree = "<group>"; };
-		D93AEB192147E061007C04BB /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		C329EBFE2149147A0093162D /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = Carthage/Build/iOS/PromiseKit.framework; sourceTree = "<group>"; };
 		C332A66B2147BBAD00B7D891 /* ShopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopTableViewCell.swift; sourceTree = "<group>"; };
 		C332A6782147DE1300B7D891 /* ShopDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopDetailViewController.swift; sourceTree = "<group>"; };
 		C332A67A2147DE7200B7D891 /* ShopContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopContentView.swift; sourceTree = "<group>"; };
@@ -65,6 +78,10 @@
 		C3C1D92321468C88008D168B /* ShopsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsContentView.swift; sourceTree = "<group>"; };
 		C3C1D92521468CC7008D168B /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		C3C1D92721468CD4008D168B /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		C3EEEFBA2149149000FBAB3E /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		D93AEB122147DB03007C04BB /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		D93AEB152147E00B007C04BB /* LaunchErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchErrors.swift; sourceTree = "<group>"; };
+		D93AEB192147E061007C04BB /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		D97632792142BD4E00742C63 /* clean-architecture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "clean-architecture.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D976327C2142BD4E00742C63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D976327E2142BD4E00742C63 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +105,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3EEEFBB2149149000FBAB3E /* Alamofire.framework in Frameworks */,
+				C3EEEFB92149149000FBAB3E /* PromiseKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,20 +120,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D93AEB112147DAED007C04BB /* Common */ = {
+		C329EBF421490F230093162D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D93AEB122147DB03007C04BB /* Result.swift */,
+				C3EEEFBA2149149000FBAB3E /* Alamofire.framework */,
+				C329EBFE2149147A0093162D /* PromiseKit.framework */,
 			);
-			path = Common;
-			sourceTree = "<group>";
-		};
-		D93AEB182147E047007C04BB /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				D93AEB192147E061007C04BB /* AppConfiguration.swift */,
-			);
-			path = Models;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		C332A66A2147A67300B7D891 /* Views */ = {
@@ -135,12 +147,29 @@
 			path = ShopDetail;
 			sourceTree = "<group>";
 		};
+		D93AEB112147DAED007C04BB /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				D93AEB122147DB03007C04BB /* Result.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		D93AEB182147E047007C04BB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D93AEB192147E061007C04BB /* AppConfiguration.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		D97632702142BD4E00742C63 = {
 			isa = PBXGroup;
 			children = (
 				D976327B2142BD4E00742C63 /* clean-architecture */,
 				D97632902142BD5000742C63 /* clean-architectureTests */,
 				D976327A2142BD4E00742C63 /* Products */,
+				C329EBF421490F230093162D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -273,6 +302,8 @@
 				D97632752142BD4E00742C63 /* Sources */,
 				D97632762142BD4E00742C63 /* Frameworks */,
 				D97632772142BD4E00742C63 /* Resources */,
+				C329EBF921490F2A0093162D /* ShellScript */,
+				C329EBFD214914130093162D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -358,6 +389,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C329EBF921490F2A0093162D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PromiseKit.framework",
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Alamofire.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PromiseKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D97632752142BD4E00742C63 /* Sources */ = {
@@ -547,6 +598,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "clean-architecture/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -566,6 +621,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "clean-architecture/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
