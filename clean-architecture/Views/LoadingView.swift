@@ -10,6 +10,7 @@ class LoadingView: UIView {
         loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
         loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.startAnimating()
         self.addSubview(loadingIndicator)
         
         NSLayoutConstraint.activate([loadingIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
