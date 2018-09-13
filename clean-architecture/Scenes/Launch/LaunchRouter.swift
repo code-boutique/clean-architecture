@@ -11,8 +11,10 @@ class LaunchRouter: LaunchRouterInput {
     
     func gotoMainAppScreen() {
         let router = ShopsRouter()
-        let presenter = ShopsPresenter(router: router)
+        let shops = ShopsUseCase(shopsWorker: ShopsWorker2())
+        let presenter = ShopsPresenter(router: router, shops: shops)
         let controller = ShopsViewController(presenter: presenter)
+        presenter.view = controller
         router.viewController = controller
         viewController!.navigationController?.viewControllers = [controller]
     }

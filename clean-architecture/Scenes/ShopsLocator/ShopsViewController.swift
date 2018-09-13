@@ -1,13 +1,15 @@
 import UIKit
+import MapKit
 
 class ShopsViewController: ViewController {
     
     private var loadingView: LoadingView!
     private var contentView: ShopsContentView!
     private var errorView: ErrorView!
-    private let presenter:ShopsPresenter
+    private let presenter:ShopsViewInput!
+    private var shops:Array<Shop>?
     
-    init(presenter:ShopsPresenter) {
+    init(presenter:ShopsViewInput) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
@@ -25,6 +27,8 @@ class ShopsViewController: ViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "navigation_item_list"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(flip))
         loadingView.loadingIndicator.startAnimating()
         self.loadingView.isHidden = true
+        
+        presenter.getShops()
     }
     
     override func createViews() {
@@ -60,8 +64,7 @@ class ShopsViewController: ViewController {
 
 extension ShopsViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //TODO:
-        return 1
+        return shops?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -75,8 +78,33 @@ extension ShopsViewController:UITableViewDataSource{
 
 extension ShopsViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //TODO: hardcoded
-        presenter.gotoShopDetail(id: 1)
+        presenter.gotoShopDetail(id: shops![indexPath.row].id)
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension ShopsViewController: ShopsView {
+    func loading(show: Bool) {
+        loadingView.loadingIndicator.isHidden = !show
+    }
+    
+    func shops(shops: Array<Shop>) {
+        self.shops = shops
+        contentView.tableView.reloadData()
+        var locations = Array<MKPointAnnotation>()
+        for shop in shops {
+            let location = MKPointAnnotation()
+            location.coordinate = CLLocationCoordinate2D(latitude: shop.location.latitude, longitude: shop.location.longitude)
+            location.title = shop.name
+            contentView.mapView.addAnnotation(location)
+            locations.append(location)
+        }
+        contentView.mapView.removeAnnotations(contentView.mapView.annotations)
+        contentView.mapView.showAnnotations(locations, animated: true)
+        //contentView.mapView.delegate = self
+    }
+    
+    func error(error: String) {
+        errorView.errorLabel.text = error
     }
 }
