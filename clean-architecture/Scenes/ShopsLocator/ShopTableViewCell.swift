@@ -10,8 +10,8 @@ import UIKit
 
 class ShopTableViewCell: UITableViewCell {
     
-    private var nameLabel:UILabel!
-    private var favouriteButton:UIButton!
+    var nameLabel:UILabel!
+    var favouriteButton:UIButton!
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

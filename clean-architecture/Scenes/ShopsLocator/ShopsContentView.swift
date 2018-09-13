@@ -5,9 +5,10 @@ class ShopsContentView: UIView {
     
     var mapView:MKMapView!
     var tableView:UITableView!
-    private var detailView:UIView!
-    private var nameLabel:UILabel!
-    private var favouriteButton:UIButton!
+    var detailView:UIView!
+    var nameLabel:UILabel!
+    var favouriteButton:UIButton!
+    var nextButton:UIButton!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -37,6 +38,10 @@ class ShopsContentView: UIView {
         favouriteButton.setImage(UIImage(named: "button_favorite"), for: .selected)
         favouriteButton.setImage(UIImage(named: "button_favorite"), for: .highlighted)
         detailView.addSubview(favouriteButton)
+        nextButton = UIButton()
+        nextButton.translatesAutoresizingMaskIntoConstraints = false
+        nextButton.setImage(UIImage(named: "button_next"), for: .normal)
+        detailView.addSubview(nextButton)
         NSLayoutConstraint.activate([tableView.leftAnchor.constraint(equalTo: self.leftAnchor),
                                      tableView.rightAnchor.constraint(equalTo: self.rightAnchor),
                                      tableView.topAnchor.constraint(equalTo: self.topAnchor),
@@ -53,10 +58,14 @@ class ShopsContentView: UIView {
                                      nameLabel.rightAnchor.constraint(equalTo: favouriteButton.leftAnchor, constant: -16),
                                      nameLabel.topAnchor.constraint(equalTo: detailView.topAnchor),
                                      nameLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16),
-                                     favouriteButton.rightAnchor.constraint(equalTo: detailView.rightAnchor, constant: -16),
+                                     favouriteButton.rightAnchor.constraint(equalTo: nextButton.leftAnchor, constant: -8),
                                      favouriteButton.widthAnchor.constraint(equalToConstant: 40),
                                      favouriteButton.heightAnchor.constraint(equalToConstant: 40),
-                                     favouriteButton.centerYAnchor.constraint(equalTo: self.nameLabel.centerYAnchor)])
+                                     favouriteButton.centerYAnchor.constraint(equalTo: self.nameLabel.centerYAnchor),
+                                     nextButton.rightAnchor.constraint(equalTo: detailView.rightAnchor, constant: -16),
+                                     nextButton.widthAnchor.constraint(equalToConstant: 40),
+                                     nextButton.heightAnchor.constraint(equalToConstant: 40),
+                                     nextButton.centerYAnchor.constraint(equalTo: self.nameLabel.centerYAnchor)])
     }
     
     required init?(coder aDecoder: NSCoder) {

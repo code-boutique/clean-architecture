@@ -42,7 +42,6 @@
 		D97632B3214310B700742C63 /* LaunchPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97632B2214310B700742C63 /* LaunchPresenterTests.swift */; };
 		D97632B4214310E100742C63 /* LaunchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97632AE21430F8000742C63 /* LaunchPresenter.swift */; };
 		D98C91C52146567F00B5F2FB /* LaunchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C91C42146567F00B5F2FB /* LaunchRouter.swift */; };
-		D98C91C62146567F00B5F2FB /* LaunchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C91C42146567F00B5F2FB /* LaunchRouter.swift */; };
 		D98C91C8214658AC00B5F2FB /* ShopsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C91C7214658AC00B5F2FB /* ShopsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -464,7 +463,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D93AEB142147DB03007C04BB /* Result.swift in Sources */,
-				D98C91C62146567F00B5F2FB /* LaunchRouter.swift in Sources */,
 				D97632B4214310E100742C63 /* LaunchPresenter.swift in Sources */,
 				D93AEB172147E00B007C04BB /* LaunchErrors.swift in Sources */,
 				D97632AC2142C9A800742C63 /* SaveConfigurationWorker.swift in Sources */,
