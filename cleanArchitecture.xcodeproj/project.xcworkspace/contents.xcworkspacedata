@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:clean-architecture.xcodeproj">
+      location = "self:/Users/david.bayon.alvarez/Projects/clean-architecture/cleanArchitecture.xcodeproj">
    </FileRef>
 </Workspace>
