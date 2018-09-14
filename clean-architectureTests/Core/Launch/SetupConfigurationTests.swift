@@ -59,7 +59,7 @@ class SetupConfigurationTests: XCTestCase {
 
 private class DownloadConfigurationOk: DownloadConfigurationWorker {
     func downloadConfiguration(completion: @escaping (Result<AppConfiguration, AppConfigurationError>) -> ()) {
-        let shop = Shop(listTitle: "title", detailTitle: "title2")
+        let shop = ShopConfiguration(title: "", titleList: "")
         let configuration = AppConfiguration(shop: shop)
         completion(Result<AppConfiguration, AppConfigurationError>.success(configuration))
     }

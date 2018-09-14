@@ -6,10 +6,10 @@ class ShopsViewController: ViewController {
     private var loadingView: LoadingView!
     private var contentView: ShopsContentView!
     private var errorView: ErrorView!
-    private let presenter:ShopsViewInput!
-    private var shops:Array<Shop>?
+    private let presenter:ShopsPresenterProtocol!
+    private var shops:Array<ShopViewModel>?
     
-    init(presenter:ShopsViewInput) {
+    init(presenter:ShopsPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
@@ -20,14 +20,14 @@ class ShopsViewController: ViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let rightBarButton = UIBarButtonItem(image: UIImage(named: "navigation_item_list"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(flipViews))
+        rightBarButton.isEnabled = false
+        self.navigationItem.rightBarButtonItem = rightBarButton
         contentView.tableView.dataSource = self
         contentView.tableView.delegate = self
-        //TODO: change to presenter decision, next lines
-        self.title = "Title..."
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "navigation_item_list"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(flip))
-        loadingView.loadingIndicator.startAnimating()
-        self.loadingView.isHidden = true
-        
+        contentView.mapView.delegate = self
+        contentView.mapView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapMap)))
+        contentView.nextButton.addTarget(self, action: #selector(tapDetail), for: .touchUpInside)
         presenter.getShops()
     }
     
@@ -39,7 +39,6 @@ class ShopsViewController: ViewController {
         loadingView = LoadingView()
         self.view.addSubview(loadingView)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-        
     }
     
     override func setupConstraints() {        
@@ -57,18 +56,32 @@ class ShopsViewController: ViewController {
                                      errorView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)])
     }
     
-    @objc func flip() {
-        
+    @objc func flipViews() {
+        presenter.flip()
+    }
+    
+    @objc func tapMap() {
+        //TODO: what to do? redirect to presenter?
+        contentView.detailView.isHidden = true
+    }
+    
+    @objc func tapDetail(){
+        let id = contentView.nextButton.tag
+        presenter.gotoShopDetail(id: id)
     }
 }
 
-extension ShopsViewController:UITableViewDataSource{
+extension ShopsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return shops?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return ShopTableViewCell(style: .default, reuseIdentifier: "shop_table_cell")
+        let shop = shops![indexPath.row]
+        let cell = ShopTableViewCell(style: .default, reuseIdentifier: "shop_table_cell")
+        cell.nameLabel.text = shop.name
+        //TODO: is favorite
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -76,35 +89,84 @@ extension ShopsViewController:UITableViewDataSource{
     }
 }
 
-extension ShopsViewController:UITableViewDelegate{
+extension ShopsViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter.gotoShopDetail(id: shops![indexPath.row].id)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
-extension ShopsViewController: ShopsView {
-    func loading(show: Bool) {
-        loadingView.loadingIndicator.isHidden = !show
+extension ShopsViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        let annotation = view.annotation as! MapAnnotation
+        presenter.tapShop(id: annotation.id)
     }
     
-    func shops(shops: Array<Shop>) {
-        self.shops = shops
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        let annotation = view.annotation as! MapAnnotation
+        presenter.gotoShopDetail(id: annotation.id)
+    }
+}
+
+extension ShopsViewController: ShopsView {
+    
+    func setup(title: String) {
+        self.title = title
+        self.contentView.detailView.isHidden = true
+        self.contentView.tableView.isHidden = true
+    }
+    
+    func loading(show: Bool) {
+        loadingView.isHidden = !show
+    }
+    
+    func shops(shopViewState: ShopsViewState) {
+        self.shops = shopViewState.shops
         contentView.tableView.reloadData()
         var locations = Array<MKPointAnnotation>()
-        for shop in shops {
-            let location = MKPointAnnotation()
-            location.coordinate = CLLocationCoordinate2D(latitude: shop.location.latitude, longitude: shop.location.longitude)
+        for shop in self.shops! {
+            let location = MapAnnotation(id: shop.id)
+            location.coordinate = CLLocationCoordinate2D(latitude: shop.latitude, longitude: shop.longitude)
             location.title = shop.name
             contentView.mapView.addAnnotation(location)
             locations.append(location)
         }
         contentView.mapView.removeAnnotations(contentView.mapView.annotations)
         contentView.mapView.showAnnotations(locations, animated: true)
-        //contentView.mapView.delegate = self
+        switch shopViewState.type {
+        case .map:
+            contentView.mapView.isHidden = false
+            contentView.tableView.isHidden = true
+            contentView.detailView.isHidden = true
+        case .list:
+            contentView.mapView.isHidden = true
+            contentView.detailView.isHidden = true
+            contentView.tableView.isHidden = false
+        }
+        if let button = self.navigationItem.rightBarButtonItem {
+            button.isEnabled = true
+        }
+    }
+    
+    func detail(shop: ShopViewModel) {
+        contentView.detailView.isHidden = false
+        contentView.nameLabel.text = shop.name
+        contentView.nextButton.tag = shop.id
+        contentView.mapView.setCenter(CLLocationCoordinate2D(latitude: shop.latitude, longitude: shop.longitude), animated: true)
     }
     
     func error(error: String) {
         errorView.errorLabel.text = error
+        if let button = self.navigationItem.rightBarButtonItem {
+            button.isEnabled = false
+        }
+    }
+}
+
+class MapAnnotation: MKPointAnnotation {
+    let id:Int
+    init(id:Int) {
+        self.id = id
+        super.init()
     }
 }

@@ -12,8 +12,11 @@ struct ShopApi: Codable {
 
 class DownloadConfigurationApi: DownloadConfigurationWorker {
     func downloadConfiguration(completion: @escaping (Result<AppConfiguration, AppConfigurationError>) -> ()) {
-        let url = "https://shops-locator.herokuapp.com/config"
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default)
+        Alamofire
+            .request("https://shops-locator.herokuapp.com/config",
+                     method: .get,
+                     parameters: nil,
+                     encoding: JSONEncoding.default)
             .responseData { response in
                 switch response.result {
                     case .success(let data):
@@ -31,8 +34,8 @@ class DownloadConfigurationApi: DownloadConfigurationWorker {
     }
     
     private func map(_ api: AppConfigurationApi) -> AppConfiguration {
-        let shop = Shop(listTitle: api.shops.list_title,
-                        detailTitle: api.shops.detail_title)
+        let shop = ShopConfiguration(title: api.shops.detail_title,
+                                     titleList: api.shops.list_title)
         return AppConfiguration(shop: shop)
     }
 }

@@ -20,7 +20,11 @@ class ShopsWorker:Worker {
         ]
         firstly {
             Alamofire
-                .request("https://shops-locator.herokuapp.com/shops/nearby", method: .get, parameters: parameters, encoding: URLEncoding(destination: .queryString), headers: nil)
+                .request("https://shops-locator.herokuapp.com/shops/nearby",
+                         method: .get,
+                         parameters: parameters,
+                         encoding: URLEncoding(destination: .queryString),
+                         headers: nil)
                 .responseDecodable([ShopCloud].self)
         }.done { data in
             print("shops: \(data)")
