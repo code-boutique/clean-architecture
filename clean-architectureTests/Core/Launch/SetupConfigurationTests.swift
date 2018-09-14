@@ -1,4 +1,5 @@
 import XCTest
+@testable import cleanArchitecture
 
 class SetupConfigurationTests: XCTestCase {
     
@@ -57,14 +58,15 @@ class SetupConfigurationTests: XCTestCase {
 }
 
 private class DownloadConfigurationOk: DownloadConfigurationWorker {
-    func downloadConfiguration(completion: (Result<AppConfiguration, AppConfigurationError>) -> ()) {
-        let configuration = AppConfiguration()
+    func downloadConfiguration(completion: @escaping (Result<AppConfiguration, AppConfigurationError>) -> ()) {
+        let shop = ShopConfiguration(title: "", titleList: "")
+        let configuration = AppConfiguration(shop: shop)
         completion(Result<AppConfiguration, AppConfigurationError>.success(configuration))
     }
 }
 
 private class DownloadConfigurationFail: DownloadConfigurationWorker {
-    func downloadConfiguration(completion: (Result<AppConfiguration, AppConfigurationError>) -> ()) {
+    func downloadConfiguration(completion: @escaping (Result<AppConfiguration, AppConfigurationError>) -> ()) {
         completion(Result<AppConfiguration, AppConfigurationError>.failure(.downloadError))
     }
 }

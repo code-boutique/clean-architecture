@@ -27,9 +27,6 @@
 		D93AEB172147E00B007C04BB /* LaunchErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AEB152147E00B007C04BB /* LaunchErrors.swift */; };
 		D93AEB1A2147E061007C04BB /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AEB192147E061007C04BB /* AppConfiguration.swift */; };
 		D93AEB1B2147E061007C04BB /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AEB192147E061007C04BB /* AppConfiguration.swift */; };
-		D9590AC4214B9A1F00E2B446 /* LaunchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98C91C42146567F00B5F2FB /* LaunchRouter.swift */; };
-		D9590AC5214B9A2C00E2B446 /* ShopsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EEEFBD2149164E00FBAB3E /* ShopsUseCase.swift */; };
-		D9590AC6214B9A3500E2B446 /* ShopsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EEEFBF214916F300FBAB3E /* ShopsWorker.swift */; };
 		D976327D2142BD4E00742C63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976327C2142BD4E00742C63 /* AppDelegate.swift */; };
 		D976327F2142BD4E00742C63 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976327E2142BD4E00742C63 /* LaunchViewController.swift */; };
 		D97632842142BD5000742C63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D97632832142BD5000742C63 /* Assets.xcassets */; };
@@ -488,7 +485,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D93AEB142147DB03007C04BB /* Result.swift in Sources */,
+<<<<<<< HEAD
+				D98C91C62146567F00B5F2FB /* LaunchRouter.swift in Sources */,
 				D9D897E1214A5461001DA105 /* ShopContentView.swift in Sources */,
+=======
+>>>>>>> master
 				D97632B4214310E100742C63 /* LaunchPresenter.swift in Sources */,
 				D93AEB172147E00B007C04BB /* LaunchErrors.swift in Sources */,
 				D97632AC2142C9A800742C63 /* SaveConfigurationWorker.swift in Sources */,
@@ -500,13 +501,10 @@
 				D9D897DD214A544E001DA105 /* ShopsPresenter.swift in Sources */,
 				D97632B3214310B700742C63 /* LaunchPresenterTests.swift in Sources */,
 				D97632A92142C5DC00742C63 /* SetupUseCase.swift in Sources */,
-				D9590AC6214B9A3500E2B446 /* ShopsWorker.swift in Sources */,
 				D9D897DE214A545D001DA105 /* ShopsContentView.swift in Sources */,
 				D9D897E3214A5480001DA105 /* ErrorView.swift in Sources */,
 				D98C91C9214659A400B5F2FB /* ShopsViewController.swift in Sources */,
 				D9D897DF214A545D001DA105 /* ShopTableViewCell.swift in Sources */,
-				D9590AC5214B9A2C00E2B446 /* ShopsUseCase.swift in Sources */,
-				D9590AC4214B9A1F00E2B446 /* LaunchRouter.swift in Sources */,
 				D9D897E2214A5480001DA105 /* LoadingView.swift in Sources */,
 				D9D897E0214A5461001DA105 /* ShopDetailViewController.swift in Sources */,
 			);
