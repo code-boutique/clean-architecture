@@ -1,11 +1,3 @@
-//
-//  ShopsPresenter.swift
-//  clean-architecture
-//
-//  Created by Alberto on 11/9/18.
-//  Copyright © 2018 Code Boutique. All rights reserved.
-//
-
 protocol ShopsPresenterProtocol: class {
     func fill()
     func getShops()
@@ -20,6 +12,7 @@ protocol ShopsView: class {
     func shops(shopViewState:ShopsViewState)
     func error(error:String)
     func detail(shop:ShopViewModel)
+    func noLocationPermission()
 }
 
 struct ShopsViewState {
@@ -87,7 +80,13 @@ extension ShopsPresenter: ShopsOutputProtocol {
     
     func onGetShopsError(error: Error) {
         view?.loading(show: false)
-        view?.error(error: error.localizedDescription)
+        switch error {
+        case LocationError.noLocationPermission:
+            view?.noLocationPermission()
+        default:
+            //TODO: refactor to inject custom msg or something
+            view?.error(error: "Something went wrong, :)")
+        }
     }
     
 }

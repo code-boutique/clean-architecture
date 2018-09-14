@@ -17,22 +17,43 @@ struct Shop {
     let location:Location
 }
 
-struct Location {
-    let latitude:Double
-    let longitude:Double
+enum ShopsError: Error {
+    case network, parsing, timeout
 }
 
 class ShopsUseCase:ShopsProtocol  {
     
-    private let shopsWorker:Worker2<Void, Array<Shop>>
+    private let shopsWorker:ShopsWorker
+    private let locationWorker:BaseWorker<Void, Location, LocationError>
     
-    init(shopsWorker:Worker2<Void, Array<Shop>>) {
+    init(shopsWorker:ShopsWorker, locationWorker:BaseWorker<Void, Location, LocationError>) {
         self.shopsWorker = shopsWorker
+        self.locationWorker = locationWorker
     }
     
     func get(output:ShopsOutputProtocol) {
+        // Callback way
+//        locationWorker.run { (locationResult) in
+//            switch locationResult {
+//            case .success(let location):
+//                self.shopsWorker.run(input: location, completion: { (shopsResult) in
+//                    switch shopsResult {
+//                    case .success(let shops):
+//                        output.onGetShops(shops: shops)
+//                    case .failure(let error):
+//                        output.onGetShopsError(error: error)
+//                    }
+//                })
+//            case .failure(let error):
+//                output.onGetShopsError(error: error)
+//            }
+//        }
+
+        //Promise way
         firstly {
-            shopsWorker.run(input: nil)
+            self.locationWorker.run()
+        }.then { location in
+            self.shopsWorker.run(input: location)
         }.done { result in
             output.onGetShops(shops: result)
         }.catch { error in
