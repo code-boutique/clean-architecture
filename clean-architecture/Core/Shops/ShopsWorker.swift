@@ -3,72 +3,87 @@ import Alamofire
 import PromiseKit
 import PMKAlamofire
 
-typealias ResolvableWorker = (_ from:Worker, _ data:Any) -> Void
-typealias RejectableWorker = (_ from:Worker, _ error:Error) -> Void
+//typealias ResolvableWorker = (_ from:Worker, _ data:Any) -> Void
+//typealias RejectableWorker = (_ from:Worker, _ error:Error) -> Void
+//
+//class Worker {
+//    func run(resolve:@escaping ResolvableWorker, reject:@escaping RejectableWorker) {
+//        assertionFailure("Worker is a class without impl, you should implement your own")
+//    }
+//}
 
-class Worker {
-    func run(resolve:@escaping ResolvableWorker, reject:@escaping RejectableWorker) {
-        assertionFailure("Worker is a class without impl, you should implement your own")
-    }
-}
+//class ShopsWorker:Worker {
+//    override func run(resolve: @escaping ResolvableWorker, reject: @escaping RejectableWorker) {
+//        let parameters: Parameters = [
+//            "latitude": 43.0,
+//            "longitude":-8.0
+//        ]
+//        firstly {
+//            Alamofire
+//                .request("https://shops-locator.herokuapp.com/shops/nearby", method: .get, parameters: parameters, encoding: URLEncoding(destination: .queryString), headers: nil)
+//                .responseDecodable([ShopCloud].self)
+//        }.done { data in
+//            print("shops: \(data)")
+//        }.catch { error in
+//            print("error: \(error)")
+//        }
+//    }
+//}
 
-class ShopsWorker:Worker {
-    override func run(resolve: @escaping ResolvableWorker, reject: @escaping RejectableWorker) {
+typealias ShopsWorker = BaseWorker<Location, Array<Shop>, ShopsError>
+final class ShopsWorkerI: ShopsWorker {
+    
+    override func run(input: Location?, completion: @escaping ((WorkerResult<Array<Shop>, ShopsError>) -> Void)) {
         let parameters: Parameters = [
-            "latitude": 43.0,
-            "longitude":-8.0
+            "latitude": input!.latitude,
+            "longitude": input!.longitude
         ]
-        firstly {
-            Alamofire
-                .request("https://shops-locator.herokuapp.com/shops/nearby",
-                         method: .get,
-                         parameters: parameters,
-                         encoding: URLEncoding(destination: .queryString),
-                         headers: nil)
-                .responseDecodable([ShopCloud].self)
-        }.done { data in
-            print("shops: \(data)")
-        }.catch { error in
-            print("error: \(error)")
-        }
-    }
-}
-
-class Worker2<I,O> {
-    func run(input:I?) -> Promise<O> {
-        //assertionFailure("Worker is a class without impl, you should implement your own")
-        let error = NSError(domain: "Worker2.abstract-class.not-implemented", code: -1, userInfo: nil)
-        return Promise(error: error)
-    }
-}
-
-class ShopsWorker2:Worker2<Void, Array<Shop>> {
-    override func run(input: Void?) -> Promise<Array<Shop>> {
-        return Promise { seal in
-            let parameters: Parameters = [
-                "latitude": 43.0,
-                "longitude":-8.0
-            ]
-            Alamofire
-                .request("https://shops-locator.herokuapp.com/shops/nearby", method: .get, parameters: parameters, encoding: URLEncoding(destination: .queryString), headers: nil)
-                .responseData(completionHandler: { response in
-                    switch response.result {
-                    case .success:
-                        do {
-                            let parsed = try JSONDecoder().decode([ShopCloud].self, from: response.data!)
-                            let mapped = parsed.map({ (shop) -> Shop in
-                                Shop(id: shop.id, name: shop.name, description: shop.description, services: shop.services, location: Location(latitude: shop.location.latitude, longitude: shop.location.longitude))
-                            })
-                            seal.fulfill(mapped)
-                        }catch {
-                            seal.reject(error)
-                        }
-                    case .failure(let error):
-                        seal.reject(error)
+        Alamofire
+            .request("https://shops-locator.herokuapp.com/shops/nearby", method: .get, parameters: parameters, encoding: URLEncoding(destination: .queryString), headers: nil)
+            .responseData(completionHandler: { response in
+                switch response.result {
+                case .success:
+                    do {
+                        let parsed = try JSONDecoder().decode([ShopCloud].self, from: response.data!)
+                        let mapped = parsed.map({ (shop) -> Shop in
+                            Shop(id: shop.id, name: shop.name, description: shop.description, services: shop.services, location: Location(latitude: shop.location.latitude, longitude: shop.location.longitude))
+                        })
+                        completion(WorkerResult.success(mapped))
+                    }catch {
+                        completion(WorkerResult.failure(ShopsError.parsing))
                     }
-                })                
-        }
+                case .failure:
+                    completion(WorkerResult.failure(ShopsError.network))
+                }
+            })
     }
+    
+//    override func run(input: Location?) -> Promise<Array<Shop>> {
+//        return Promise { seal in
+//            let parameters: Parameters = [
+//                "latitude": input!.latitude,
+//                "longitude": input!.longitude
+//            ]
+//            Alamofire
+//                .request("https://shops-locator.herokuapp.com/shops/nearby", method: .get, parameters: parameters, encoding: URLEncoding(destination: .queryString), headers: nil)
+//                .responseData(completionHandler: { response in
+//                    switch response.result {
+//                    case .success:
+//                        do {
+//                            let parsed = try JSONDecoder().decode([ShopCloud].self, from: response.data!)
+//                            let mapped = parsed.map({ (shop) -> Shop in
+//                                Shop(id: shop.id, name: shop.name, description: shop.description, services: shop.services, location: Location(latitude: shop.location.latitude, longitude: shop.location.longitude))
+//                            })
+//                            seal.fulfill(mapped)
+//                        }catch {
+//                            seal.reject(error)
+//                        }
+//                    case .failure(let error):
+//                        seal.reject(error)
+//                    }
+//                })                
+//        }
+//    }
 }
 
 fileprivate struct ShopCloud:Decodable {

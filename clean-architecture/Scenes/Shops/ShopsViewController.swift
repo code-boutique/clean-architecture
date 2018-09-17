@@ -7,10 +7,12 @@ class ShopsViewController: ViewController {
     private var contentView: ShopsContentView!
     private var errorView: ErrorView!
     private let presenter:ShopsPresenterProtocol!
+    private let locationManager:CLLocationManager
     private var shops:Array<ShopViewModel>?
     
-    init(presenter:ShopsPresenterProtocol) {
+    init(presenter:ShopsPresenterProtocol, locationManager:CLLocationManager = CLLocationManager()) {
         self.presenter = presenter
+        self.locationManager = locationManager
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -23,6 +25,7 @@ class ShopsViewController: ViewController {
         let rightBarButton = UIBarButtonItem(image: UIImage(named: "navigation_item_list"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(flipViews))
         rightBarButton.isEnabled = false
         self.navigationItem.rightBarButtonItem = rightBarButton
+        locationManager.delegate = self
         contentView.tableView.dataSource = self
         contentView.tableView.delegate = self
         contentView.mapView.delegate = self
@@ -108,6 +111,14 @@ extension ShopsViewController: MKMapViewDelegate {
     }
 }
 
+extension ShopsViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            presenter.getShops()
+        }
+    }
+}
+
 extension ShopsViewController: ShopsView {
     
     func setup(title: String) {
@@ -160,6 +171,10 @@ extension ShopsViewController: ShopsView {
         if let button = self.navigationItem.rightBarButtonItem {
             button.isEnabled = false
         }
+    }
+    
+    func noLocationPermission() {
+        locationManager.requestWhenInUseAuthorization()
     }
 }
 
