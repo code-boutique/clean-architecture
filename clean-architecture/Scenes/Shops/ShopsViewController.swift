@@ -25,6 +25,9 @@ class ShopsViewController: ViewController {
         let rightBarButton = UIBarButtonItem(image: UIImage(named: "navigation_item_list"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(flipViews))
         rightBarButton.isEnabled = false
         self.navigationItem.rightBarButtonItem = rightBarButton
+        let leftBarButton = UIBarButtonItem(image: UIImage(named: "navigation_item_reload"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(reload))
+        leftBarButton.isEnabled = false
+        self.navigationItem.leftBarButtonItem = leftBarButton
         locationManager.delegate = self
         contentView.tableView.dataSource = self
         contentView.tableView.delegate = self
@@ -57,6 +60,10 @@ class ShopsViewController: ViewController {
                                      errorView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
                                      errorView.topAnchor.constraint(equalTo: self.view.topAnchor),
                                      errorView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)])
+    }
+    
+    @objc func reload() {
+        presenter.getShops()
     }
     
     @objc func flipViews() {
@@ -129,6 +136,7 @@ extension ShopsViewController: ShopsView {
     
     func loading(show: Bool) {
         loadingView.isHidden = !show
+        navigationItem.leftBarButtonItem?.isEnabled = !show
     }
     
     func shops(shopViewState: ShopsViewState) {
