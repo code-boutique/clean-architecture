@@ -1,4 +1,5 @@
 import XCTest
+@testable import cleanArchitecture
 
 class LaunchPresenterTests: XCTestCase {
     
@@ -53,7 +54,7 @@ private class SetupUseCaseStub: SetupUseCaseProtocol {
     
     var getAppConfigurationCalled = false
     
-    func getAppConfiguration(completion: (Result<Void, AppConfigurationError>) -> ()) {
+    func getAppConfiguration(completion: @escaping (Result<Void, AppConfigurationError>) -> ()) {
         getAppConfigurationCalled = true
         completion(Result<Void, AppConfigurationError>.success(()))
     }

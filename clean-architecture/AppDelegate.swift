@@ -11,7 +11,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func launchApp() {
-        let setupUseCase = SetupUseCaseFake()
+        let downloadWorker = DownloadConfigurationApi()
+        let setupUseCase = SetupUseCase(downloadWorker: downloadWorker, saveWorker: SaveWorkerFake())
         let router = LaunchRouter()
         let presenter = LaunchPresenter(setup: setupUseCase,
                                         router: router)
@@ -27,8 +28,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+private class SaveWorkerFake: SaveConfigurationWorker {
+    func saveConfiguration(configuration: AppConfiguration) throws {
+    }
+}
+
 private class SetupUseCaseFake: SetupUseCaseProtocol {
-    func getAppConfiguration(completion: (Result<Void, AppConfigurationError>) -> ()) {
+    func getAppConfiguration(completion: @escaping (Result<Void, AppConfigurationError>) -> ()) {
         completion(Result<Void, AppConfigurationError>.success(()))
     }
 }

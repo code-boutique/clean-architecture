@@ -7,18 +7,18 @@ protocol ShopsPresenterProtocol: class {
 }
 
 protocol ShopsView: class {
-    func setup(title:String)
-    func loading(show:Bool)
-    func shops(shopViewState:ShopsViewState)
-    func error(error:String)
-    func detail(shop:ShopViewModel)
+    func setup(title: String)
+    func loading(show: Bool)
+    func shops(shopViewState: ShopsViewState)
+    func error(error: String)
+    func detail(shop: ShopViewModel)
     func noLocationPermission()
 }
 
 struct ShopsViewState {
-    let shops:Array<ShopViewModel>?
-    let type:ShopsViewType
-    let title:String
+    let shops: Array<ShopViewModel>?
+    let type: ShopsViewType
+    let title: String
 }
 
 enum ShopsViewType {
@@ -26,7 +26,12 @@ enum ShopsViewType {
 }
 
 struct ShopViewModel{
-    let id:Int;let name:String;let description:String;let services:Array<String>;let latitude:Double;let longitude:Double;
+    let id:Int
+    let name:String
+    let description:String
+    let services:Array<String>
+    let latitude:Double
+    let longitude:Double
 }
 
 class ShopsPresenter:ShopsPresenterProtocol {
@@ -42,7 +47,7 @@ class ShopsPresenter:ShopsPresenterProtocol {
         self.viewState = viewState
     }
     
-    func fill(){
+    func fill() {
         view?.setup(title: viewState.title)
     }
     
@@ -57,23 +62,31 @@ class ShopsPresenter:ShopsPresenterProtocol {
     }
     
     func flip() {
-        viewState = ShopsViewState(shops: viewState.shops, type: viewState.type == .map ? .list:.map , title: viewState.title)
+        viewState = ShopsViewState(shops: viewState.shops,
+                                   type: viewState.type == .map ? .list:.map ,
+                                   title: viewState.title)
         view?.shops(shopViewState: viewState)
     }
     
-    func tapShop(id:Int){
-        let shop = viewState.shops!.first { (shop) -> Bool in
-            shop.id == id
+    func tapShop(id: Int) {
+        if let shop = viewState.shops?.first(where: { $0.id == id }) {
+            view?.detail(shop: shop)
         }
-        view?.detail(shop: shop!)
     }
 }
 
 extension ShopsPresenter: ShopsOutputProtocol {
     
     func onGetShops(shops: Array<Shop>) {
-        let mapped = shops.map({ ShopViewModel(id: $0.id, name: $0.name, description: $0.description, services: $0.services, latitude: $0.location.latitude, longitude: $0.location.longitude) })
-        viewState = ShopsViewState(shops: mapped, type: viewState.type, title: viewState.title)
+        let mapped = shops.map({ ShopViewModel(id: $0.id,
+                                               name: $0.name,
+                                               description: $0.description,
+                                               services: $0.services,
+                                               latitude: $0.location.latitude,
+                                               longitude: $0.location.longitude) })
+        viewState = ShopsViewState(shops: mapped,
+                                   type: viewState.type,
+                                   title: viewState.title)
         view?.loading(show: false)        
         view?.shops(shopViewState: viewState)
     }
