@@ -19,8 +19,6 @@ class ShopTableViewCell: UITableViewCell {
         nameLabel = UILabel()
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.numberOfLines = 1
-        //TODO: remove
-        nameLabel.text = "Shop name"
         contentView.addSubview(nameLabel)
         favouriteButton = UIButton()
         favouriteButton.translatesAutoresizingMaskIntoConstraints = false
