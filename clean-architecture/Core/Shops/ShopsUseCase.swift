@@ -15,28 +15,34 @@ struct Shop {
     let description:String
     let services:Array<String>
     let location:Location
+    let isFavorite:Bool
+    
 }
 
 enum ShopsError: Error {
-    case network, parsing, timeout
+    case network, parsing, timeout, storage, empty
 }
 
 class ShopsUseCase:ShopsProtocol  {
     
-    private let shopsWorker:ShopsWorker
     private let locationWorker:BaseWorker<Void, Location, LocationError>
+    private let shopsWorker:ShopsWorker
+    private let saveShopsWorker:BaseWorker<Array<Shop>, Array<Shop>, ShopsError>
     
-    init(shopsWorker:ShopsWorker, locationWorker:BaseWorker<Void, Location, LocationError>) {
+    init(shopsWorker:ShopsWorker,
+         locationWorker:BaseWorker<Void, Location, LocationError>,
+         saveShopsWorker:BaseWorker<Array<Shop>, Array<Shop>, ShopsError>) {
         self.shopsWorker = shopsWorker
         self.locationWorker = locationWorker
+        self.saveShopsWorker = saveShopsWorker
     }
     
     func get(output:ShopsOutputProtocol) {
         // Callback way
-//        locationWorker.run { (locationResult) in
+//        locationWorker.execute { (locationResult) in
 //            switch locationResult {
 //            case .success(let location):
-//                self.shopsWorker.run(input: location, completion: { (shopsResult) in
+//                self.shopsWorker.execute(input: location, completion: { (shopsResult) in
 //                    switch shopsResult {
 //                    case .success(let shops):
 //                        output.onGetShops(shops: shops)
@@ -51,9 +57,11 @@ class ShopsUseCase:ShopsProtocol  {
 
         //Promise way
         firstly {
-            self.locationWorker.run()
+            self.locationWorker.execute()
         }.then { location in
-            self.shopsWorker.run(input: location)
+            self.shopsWorker.execute(input: location)
+        }.then { shops in
+            self.saveShopsWorker.execute(input: shops)
         }.done { result in
             output.onGetShops(shops: result)
         }.catch { error in

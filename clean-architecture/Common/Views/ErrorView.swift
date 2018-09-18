@@ -7,6 +7,7 @@ class ErrorView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = .white
         translatesAutoresizingMaskIntoConstraints = false
         errorLabel = UILabel()
         errorLabel.translatesAutoresizingMaskIntoConstraints = false

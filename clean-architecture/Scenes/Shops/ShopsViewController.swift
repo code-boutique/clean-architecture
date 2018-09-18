@@ -34,16 +34,19 @@ class ShopsViewController: ViewController {
         contentView.mapView.delegate = self
         contentView.mapView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapMap)))
         contentView.nextButton.addTarget(self, action: #selector(tapDetail), for: .touchUpInside)
+        contentView.favouriteButton.addTarget(self, action: #selector(favorite(sender:)), for: .touchUpInside)
+        errorView.reloadButton.addTarget(self, action: #selector(reload), for: .touchUpInside)
         presenter.getShops()
     }
     
     override func createViews() {
-        errorView = ErrorView()
-        self.view.addSubview(errorView)
         contentView = ShopsContentView()
         self.view.addSubview(contentView)
         loadingView = LoadingView()
         self.view.addSubview(loadingView)
+        errorView = ErrorView()
+        self.view.addSubview(errorView)
+        errorView.isHidden = true
         self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
@@ -71,17 +74,21 @@ class ShopsViewController: ViewController {
     }
     
     @objc func tapMap() {
-        //TODO: what to do? redirect to presenter?
-        contentView.detailView.isHidden = true
+        presenter.tapMap()
     }
     
     @objc func tapDetail(){
         let id = contentView.nextButton.tag
         presenter.gotoShopDetail(id: id)
     }
+    
+    @objc func favorite(sender:UIButton) {
+        presenter.favorite(id: sender.tag)
+    }
 }
 
 extension ShopsViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return shops?.count ?? 0
     }
@@ -90,7 +97,9 @@ extension ShopsViewController: UITableViewDataSource {
         let shop = shops![indexPath.row]
         let cell = ShopTableViewCell(style: .default, reuseIdentifier: "shop_table_cell")
         cell.nameLabel.text = shop.name
-        //TODO: is favorite
+        cell.favouriteButton.isSelected = shop.favorite
+        cell.favouriteButton.tag = shop.id
+        cell.favouriteButton.addTarget(self, action: #selector(favorite(sender:)), for: .touchUpInside)
         return cell
     }
     
@@ -136,6 +145,7 @@ extension ShopsViewController: ShopsView {
     
     func loading(show: Bool) {
         loadingView.isHidden = !show
+        errorView.isHidden = show
         navigationItem.leftBarButtonItem?.isEnabled = !show
     }
     
@@ -157,25 +167,40 @@ extension ShopsViewController: ShopsView {
             contentView.mapView.isHidden = false
             contentView.tableView.isHidden = true
             contentView.detailView.isHidden = true
+            errorView.isHidden = true
         case .list:
             contentView.mapView.isHidden = true
             contentView.detailView.isHidden = true
             contentView.tableView.isHidden = false
+            errorView.isHidden = true
         }
         if let button = self.navigationItem.rightBarButtonItem {
             button.isEnabled = true
         }
     }
     
+    func updateShops(shopViewState: ShopsViewState) {
+        self.shops = shopViewState.shops
+        contentView.tableView.reloadData()
+    }
+    
     func detail(shop: ShopViewModel) {
+        updateDetail(shop: shop)
         contentView.detailView.isHidden = false
-        contentView.nameLabel.text = shop.name
-        contentView.nextButton.tag = shop.id
         contentView.mapView.setCenter(CLLocationCoordinate2D(latitude: shop.latitude, longitude: shop.longitude), animated: true)
     }
     
+    func updateDetail(shop: ShopViewModel){
+        contentView.nameLabel.text = shop.name
+        contentView.nextButton.tag = shop.id
+        contentView.favouriteButton.tag = shop.id
+        contentView.favouriteButton.isSelected = shop.favorite
+    }
+    
     func error(error: String) {
+        errorView.isHidden = false
         errorView.errorLabel.text = error
+        errorView.reloadButton.setTitle("reload", for: .normal)
         if let button = self.navigationItem.rightBarButtonItem {
             button.isEnabled = false
         }
@@ -183,6 +208,10 @@ extension ShopsViewController: ShopsView {
     
     func noLocationPermission() {
         locationManager.requestWhenInUseAuthorization()
+    }
+    
+    func hideDetail() {
+        contentView.detailView.isHidden = true
     }
 }
 

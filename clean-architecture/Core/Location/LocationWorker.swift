@@ -14,7 +14,7 @@ class LocationWorker:BaseWorker<Void, Location, LocationError> {
         self.delegate = delegate
     }
     
-    override func run(input: Void?, completion: @escaping ((WorkerResult<Location, LocationError>) -> Void)) {
+    override func job(input: Void?, completion: @escaping ((WorkerResult<Location, LocationError>) -> Void)) {
         switch locationManager.authorizationStatus() {
         case .notDetermined:
             completion(WorkerResult.failure(LocationError.noLocationPermission))
@@ -39,40 +39,10 @@ class LocationWorker:BaseWorker<Void, Location, LocationError> {
             break
             
         }
-        //TODO: maybe injected
         delegate.completion = completion
         locationManager.delegate = delegate
         locationManager.desiredAccuracy = accuracy;
         locationManager.startUpdatingLocation()
-    }
-    
-//    override func run(input: Void?) -> Promise<Location> {
-//        //TODO: ojo que sino hay location no revienta???? simular haber que casos se dan....
-//        let promise = CLLocationManager.requestLocation().firstValue.map { (location:CLLocation) -> Location in
-//            let lm = CLLocationManager()
-//            lm.stopUpdatingLocation()
-//            let cllocation = location.coordinate
-//            return Location(latitude: cllocation.latitude, longitude: cllocation.longitude)
-//        }
-//        return promise
-////        return CLLocationManager.promise().compactMap { (locations:Array<CLLocation>) -> Location in
-////            let lm = CLLocationManager()
-////            lm.stopUpdatingLocation()
-////            if self.location == nil {
-////                let cllocation = locations.first!.coordinate
-////                return Location(latitude: cllocation.latitude, longitude: cllocation.longitude)
-////            }
-////        }
-////        return CLLocationManager.promise().map { (locations) -> Location in
-////            let cllocation = locations.first!.coordinate
-////            return Location(latitude: cllocation.latitude, longitude: cllocation.longitude)
-////        }
-//    }
-}
-
-extension CLLocationManager {
-    func promise() {
-    
     }
 }
 
